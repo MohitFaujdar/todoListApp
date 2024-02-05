@@ -39,52 +39,54 @@ function App() {
   };
 
   return (
-    <div className="flex items-center flex-col min-h-screen bg-gradient-to-t from-neutral-900 via-slate-900 to-zinc-900 text-gray-200">
-      <h1 className="py-4 text-4xl font-black mb-8 mt-8 bg-white text-black px-32 text-center ">
-        Tasks To Do
-      </h1>
-      <div className="w-full max-w-3xl items-center flex justify-between mb-8 border-4">
-        <input
-          value={aTask}
-          type="text"
-          className=" mr-4 w-full px-2 bg-transparent outline-none "
-          onChange={(e) => setATask(e.target.value)}
-        />
-        <button onClick={() => addTask(aTask)}>
-          <Add />
-        </button>
-      </div>
-      {tasks.length === 0 ? (
-        <div className="mt-14 flex flex-col items-center justify-center gap-8">
-          <Sad />
-          <p className="text-5xl">NO TODOS TO DISPLAY</p>
+    <div className="flex items-center flex-col min-h-screen bg-slate-800 text-gray-200">
+      <div className="w-4/5 min-h-screen border border-white my-4 flex items-center flex-col bg-slate-900">
+        <h1 className="py-4 text-4xl font-black mb-6 mt-6 bg-slate-300 rounded-full text-black px-16 text-center ">
+          Tasks To Do
+        </h1>
+        <div className="w-full max-w-3xl items-center flex justify-between mb-8 border-4">
+          <input
+            value={aTask}
+            type="text"
+            className=" mr-4 w-full px-2 bg-transparent outline-none "
+            onChange={(e) => setATask(e.target.value)}
+          />
+          <button onClick={() => addTask(aTask)}>
+            <Add />
+          </button>
         </div>
-      ) : (
-        tasks.map((task) => (
-          <div
-            key={task.id}
-            className="flex items-center justify-between my-6 pb-2 w-full max-w-2xl text-xl border-b-2"
-          >
-            <h1 className={task.completed ? "line-through" : ""}>
-              {task.task}
-            </h1>
-            <div className="flex items-center gap-4 ">
-              <button
-                className="text-red-500"
-                onClick={() => deleteTask(task.id)}
-              >
-                <Remove />
-              </button>
-              <button
-                className="text-green-500"
-                onClick={() => completeTask(task.id)}
-              >
-                <Complete />
-              </button>
-            </div>
+        {tasks.length === 0 ? (
+          <div className="mt-14 flex flex-col items-center justify-center gap-8">
+            <Sad />
+            <p className="text-5xl">NO TODOS TO DISPLAY</p>
           </div>
-        ))
-      )}
+        ) : (
+          tasks.map((task) => (
+            <div
+              key={task.id}
+              className="flex items-center justify-between my-6 pb-2 w-full max-w-2xl text-xl border-b-2"
+            >
+              <h1 className={task.completed ? "line-through" : ""}>
+                {task.task}
+              </h1>
+              <div className="flex items-center gap-4 ">
+                <button
+                  className="text-red-500"
+                  onClick={() => deleteTask(task.id)}
+                >
+                  <Remove />
+                </button>
+                <button
+                  className="text-green-500"
+                  onClick={() => completeTask(task.id)}
+                >
+                  <Complete />
+                </button>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }
